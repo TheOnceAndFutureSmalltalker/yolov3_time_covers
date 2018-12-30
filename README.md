@@ -104,7 +104,8 @@ In the `yolov3_time_covers` directory you will see some scripts, darknet trainin
 These are the objects that will be inserted into background images and detected by our model.
 
 Training background images are acquired from http://cvcl.mit.edu/database.htm.  From the `yolov3_time_covers` directory, run the following shell script to download all of the images and copy them to the `images` directory.
-
+   
+    >chmod +x get_images.sh
     >./get_images.sh
     
 You should now have an `images` directory with 1200 or so images.  A few of these are shown below.
