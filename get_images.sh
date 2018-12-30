@@ -4,9 +4,7 @@ else
   mkdir images
 fi
 
-if [ -d "labels"]; then
-  rm labels/*.*
-else
+if [ ! -d "backup"]; then
   mkdir labels
 fi
 
