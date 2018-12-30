@@ -1,7 +1,12 @@
 YOLO v3 Time Magazine Covers Detection and Video
 =========
-
 This is a demonstration of how to create and train a darknet YOLO v3 model to detect time cover magazines embeded within background images and create a video where time magazine covers are tracked as they move through the video.  Complete instructions are given below.
+<br />
+<br />
+<p align="center"><img src='examples/vid_frame_0389.jpg' width="600"> </p>
+<p align="center"><b>Image containing Time Magazine covers.</b></p>
+<br />
+<br />
 
 File | Description
 ------------ | -------------
@@ -79,17 +84,60 @@ Now switch to the yolov3_time_covers folder.
 
 Image prep and video operations will be handled in this directory.  Training and other darknet commands will be executed from the darknet directory.
 
+In the yolov3_time_covers directory you will see some scripts, darknet training files, an examples directory, and a time_covers directory containing images of Time Magazine covers.  These were acquired from http://time.com/vault/year/2018/.  A sample of these are shown below.
+
+<br />
+<p align="center">
+<table>
+    <tr>
+        <td><img src='time_covers/0723democracy-cover.jpg' width="150"></td>
+        <td><img src='time_covers/fbicover.jpg'  width="150"></td>
+        <td><img src='time_covers/g9510-20_summit-cover.jpg'  width="150"></td>
+        <td><img src='time_covers/greta-cover-final.jpg'  width="150"></td>
+    </tr>    
+</table>
+</p>
+<br />
+
+These are the objects that will be inserted into background images and detected by darknet.
+
 Training images are acquired from http://cvcl.mit.edu/database.htm.  From the yolov3_time_covers directory, run the following shell script to download all of the images and copy them to the images directory.
 
     >./get_images.sh
     
-You should now have an images directory with 1500 or so images.  
+You should now have an images directory with 1500 or so images.  A few of these are shown below.
+
+<br />
+<p align="center">
+<table>
+    <tr>
+        <td><img src='examples/a223049_raw.jpg' width="150"></td>
+        <td><img src='examples/art1030_raw.jpg' width="150"></td>
+        <td><img src='examples/art366_raw.jpg' width="150"></td>
+        <td><img src='examples/fie13_raw.jpg' width="150"></td>
+    </tr>    
+</table>
+</p>
+<br />
 
 Now run the following Python script to insert Time magazine covers into these training images.  In addition, frames from the example video, project_video.mp4, are extracted and used as training images as well.
 
     >python prepare_images.py 
 
-If you inspect some of these images, you will see that most have a Time magazine cover inserted in them somewhere (a few do not).  An example is shown below.
+If you inspect some of these images, you will see that most have a Time magazine cover inserted in them somewhere (a few do not).  The images from above are shown below with the Time covers inserted.  Yours may appear different as the covers are inserted randomly.
+
+<br />
+<p align="center">
+<table>
+    <tr>
+        <td><img src='examples/a223049.jpg' width="150"></td>
+        <td><img src='examples/art1030.jpg' width="150"></td>
+        <td><img src='examples/art366.jpg' width="150"></td>
+        <td><img src='examples/fie13.jpg' width="150"></td>
+    </tr>    
+</table>
+</p>
+<br />
 
 
 Also notice that there is a labels directory.  For each training image in images directory, there is a corresponding .txt file that indicates the size and location of the Time cover in the image.  Each of these files is just one line long since there is only one Time cover in each image.  An example of one of these files is shown below.
