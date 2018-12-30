@@ -1,6 +1,6 @@
 YOLO v3 Time Magazine Covers Detection and Video
 =========
-This is a demonstration of how to create and train a darknet YOLO v3 model to detect TIme Magazine covers embeded within background images and create a video where Time Magazine covers are tracked as they move through the video.  Complete instructions are given below.
+This is a demonstration of how to create and train a darknet YOLO v3 model to detect Time Magazine covers embeded within background images and create a video where Time Magazine covers are tracked as they move through the video.  Complete instructions are given below.
 <br />
 <br />
 <p align="center"><img src='examples/vid_frame_0389.jpg' width="600"> </p>
@@ -14,9 +14,9 @@ examples | Folder containing sample images
 README.md | This readme file
 create_input_video.py | Creates a copy of project_video.mp4 with Time magazine covers traveling through it
 create_output_video.py | Creates outpu_video.mp4 from frames which have Time magazine covers detected and marked by model.
-get_images.sh | script which downloads images from http://cvcl.mit.edu/database.htm that are used for training.
-get_video_frames.py | Capatures frames from input_video.mp4 and copies them to a folder for darknet model detection.
-prepare_images.py | Prepares training images by placing Time magazine covers in them.  Creates label files too.
+get_images.sh | Script which downloads images from http://cvcl.mit.edu/database.htm that are used for training.
+get_video_frames.py | Captures frames from input_video.mp4 and copies them to a folder for darknet model detection.
+prepare_images.py | Prepares training images by placing Time Magazine covers in them.  Creates label files too.
 project_video.mp4 | Video taken from camera mounted on self driving car as it drives down highway.  From Udacity.
 time_covers | Folder containing images of Time Magazine covers sourced from http://time.com/vault/year/2018/.
 time.cfg | Darknet config file for training model.  Defines model architecture, training parameters, etc,
@@ -28,21 +28,22 @@ ytc_utils.py | Utilities supporting other scripts.
 
 
 
-## Instructions
-The instructions are divided into 4 parts:
+Instructions
+---------
+The instructions are divided into 4 sequential parts:
 
 1. Installing Darknet/YOLO Software
 2. Acquiring & Preparing Training Images
 3. Training the Model
 4. Creating Example Video
 
-**Prerequisites:**  You must have a unix/linux system with at least one GPU (otherwise training will take days!), Python 3.5 or higher with OpenCV, NumPy, and MoviePy.
+**Prerequisites:**  You must have a unix/linux system with at least one GPU (otherwise training will take days!), Python 3.5 or higher with OpenCV, NumPy, and MoviePy installed.
 
 ### Installing Darknet 
 
-Information on Darknet and YOLO can be found at https://pjreddie.com/darknet/.
+Information on Darknet and YOLO can be found at https://pjreddie.com/darknet/yolo/.
 
-This demonstration uses the fork of darknet found at https://github.com/AlexeyAB/darknet because it includes some useful enhancements:
+The standard reference implementation for Darknet/YOLO is found at https://pjreddie.com/darknet/. This demonstration uses the fork of Darknet found at https://github.com/AlexeyAB/darknet because it includes some useful enhancements:
 1. Saves the model every 100 iterations
 2. Performs detection on an entire folder of images
 3. Calculates mAP
@@ -51,7 +52,7 @@ Get the darknet project by executing the following:
 
     >git clone https://github.com/AlexeyAB/darknet.git
 
-Then switch to darknet directory.
+Then switch to `darknet` directory.
 
     >cd darknet
     
@@ -79,13 +80,13 @@ Now get this project, yolov3_time_covers, by executing the command:
 
     >git clone https://github.com/TheOnceAndFutureSmalltalker/yolov3_time_covers.git
 
-Now switch to the yolov3_time_covers folder.  
+Now switch to the `yolov3_time_covers` folder.  
 
     >cd yolov3_time_covers
 
-Image prep and video operations will be handled in this directory.  Training and other darknet commands will be executed from the darknet directory.
+Image prep and video operations will be handled in this directory.  Training and other darknet commands will be executed from the `darknet` directory.
 
-In the yolov3_time_covers directory you will see some scripts, darknet training files, an examples directory, and a time_covers directory containing images of Time Magazine covers.  These were acquired from http://time.com/vault/year/2018/.  A sample of these are shown below.
+In the `yolov3_time_covers directory` you will see some scripts, darknet training files, an 'examples' sub directory, and a `time_covers` sub directory containing images of Time Magazine covers.  These were acquired from http://time.com/vault/year/2018/.  A sample of these are shown below.
 
 <br />
 <p align="center">
@@ -102,11 +103,11 @@ In the yolov3_time_covers directory you will see some scripts, darknet training 
 
 These are the objects that will be inserted into background images and detected by our model.
 
-Training images are acquired from http://cvcl.mit.edu/database.htm.  From the yolov3_time_covers directory, run the following shell script to download all of the images and copy them to the `images` directory.
+Training background images are acquired from http://cvcl.mit.edu/database.htm.  From the `yolov3_time_covers` directory, run the following shell script to download all of the images and copy them to the `images` directory.
 
     >./get_images.sh
     
-You should now have an `images` directory with 1500 or so images.  A few of these are shown below.
+You should now have an `images` directory with 1200 or so images.  A few of these are shown below.
 
 <br />
 <p align="center">
@@ -121,11 +122,11 @@ You should now have an `images` directory with 1500 or so images.  A few of thes
 </p>
 <br />
 
-Now run the following Python script to insert Time Magazine covers into these training images.  In addition, frames from the example video, project_video.mp4, are extracted and used as training images as well.
+Now run the following Python script to insert Time Magazine covers into these training images.  In addition, about 300 frames from the example video, project_video.mp4, are extracted and used as training images as well.
 
     >python prepare_images.py 
 
-If you inspect some of these images, you will see that most have a Time Magazine cover inserted in them somewhere (a few do not).  The sample images from above are shown below with the Time covers inserted.  Yours may appear differently as the covers are inserted randomly.
+If you now inspect some of these images, you will see that most have a Time Magazine cover inserted in them somewhere (a few do not).  The sample images from above are shown below with the Time covers inserted.  Yours may appear differently as the covers are sized and placed  randomly.
 
 <br />
 <p align="center">
@@ -141,11 +142,11 @@ If you inspect some of these images, you will see that most have a Time Magazine
 <br />
 
 
-Also notice that there is now a 'labels' directory.  For each training image in 'images' directory, there is a corresponding '.txt' file that indicates the size and location of the Time cover in the image.  Each of these files is just one line long since there is only one Time cover in each image.  An example of the contents of one of these files is shown below.
+Also notice that there is now a `labels` directory as well.  For each training image in `images` directory, there is a corresponding `.txt` file that indicates the size and location of the Time cover in the image.  Each of these files is just one line long since there is only one Time cover in each image.  An example of the contents of one of these files is shown below.
 
     0 0.0615234375 0.2638888888888889 0.060546875 0.14583333333333331
 
-Finally, two files, 'train.txt' and 'val.txt', were created by the script.  These files reference the various images that are used for training or validation respectively.
+Finally, two files, `train.txt` and `val.txt`, were created by the script.  These files reference the various images that are used for training and validation respectively.
 
 You are now ready to train the model.
 
@@ -156,13 +157,13 @@ In order to train the model, you must switch back down to the darknet directory.
     >cd ../
     
 There are three different variations for training the model:
-1. Using pretrained VOC weights
-2. Using no pretrained weights and training from scratch
-3. Using the pretrained weights provided in this project, time.weights
+1. Starting with pretrained VOC weights
+2. Starting with no pretrained weights and training from scratch
+3. Starting with the pretrained weights provided in this project, `time.weights`
 
 For demonstration purposes, we will use the third option.  For more on using the first two options, see https://pjreddie.com/darknet/yolo/
 
-The weights provided in this project, time.weights, are already well trained and sufficient for object detection.  However, we can continue training from this point to try to improve the model even more.  In order to continue training from the time.weights, enter the following command:
+The weights provided in this project, `time.weights`, are already well trained and sufficient for object detection.  However, we can continue training from this point to try to improve the model even more.  In order to continue training from `time.weights`, enter the following command:
 
     >./darknet .........
 
