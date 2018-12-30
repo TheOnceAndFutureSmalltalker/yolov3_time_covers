@@ -56,7 +56,7 @@ Then switch to `darknet` directory.
 
     >cd darknet
     
-Then edit Makefile and set `CDU=1` (around line ??) so that darknet compiles with CUDA and uses the GPU (otherwise training will take days!!!) and save your changes.
+Then edit Makefile and change first line from `GPU=0` to `GPU=1` and save these changes.  This makes sure that darknet compiles with CUDA and uses the GPU (otherwise training will take days!!!).
 
 Now compile darknet using the following command:
 
@@ -68,7 +68,7 @@ To make sure everything compiled correctly, execute the following:
     
 you should get the following output.
 
-    >usage: ./darknet <function>
+    usage: ./darknet <function>
     
 For any problems or for more on compiling darknet, see https://pjreddie.com/darknet/install/.
 
@@ -76,7 +76,7 @@ For any problems or for more on compiling darknet, see https://pjreddie.com/dark
 
 ### Acquiring & Preparing Training Images
 
-Now get this project, yolov3_time_covers, by executing the command:
+Now get this project, yolov3_time_covers, by executing the command from `darknet` directory:
 
     >git clone https://github.com/TheOnceAndFutureSmalltalker/yolov3_time_covers.git
 
@@ -86,7 +86,7 @@ Now switch to the `yolov3_time_covers` folder.
 
 Image prep and video operations will be handled in this directory.  Training and other darknet commands will be executed from the `darknet` directory.
 
-In the `yolov3_time_covers directory` you will see some scripts, darknet training files, an 'examples' sub directory, and a `time_covers` sub directory containing images of Time Magazine covers.  These were acquired from http://time.com/vault/year/2018/.  A sample of these are shown below.
+In the `yolov3_time_covers` directory you will see some scripts, darknet training files, an `examples` subdirectory, and a `time_covers` subdirectory containing images of Time Magazine covers.  These were acquired from http://time.com/vault/year/2018/.  A sample of these are shown below.
 
 <br />
 <p align="center">
