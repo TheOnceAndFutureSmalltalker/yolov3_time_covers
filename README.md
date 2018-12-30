@@ -1,6 +1,6 @@
 YOLO v3 Time Magazine Covers Detection and Video
 =========
-This is a demonstration of how to create and train a darknet YOLO v3 model to detect time cover magazines embeded within background images and create a video where time magazine covers are tracked as they move through the video.  Complete instructions are given below.
+This is a demonstration of how to create and train a darknet YOLO v3 model to detect TIme Magazine covers embeded within background images and create a video where Time Magazine covers are tracked as they move through the video.  Complete instructions are given below.
 <br />
 <br />
 <p align="center"><img src='examples/vid_frame_0389.jpg' width="600"> </p>
@@ -31,7 +31,7 @@ ytc_utils.py | Utilities supporting other scripts.
 ## Instructions
 The instructions are divided into 4 parts:
 
-1. Installing Darknet (YOLO software)
+1. Installing Darknet/YOLO Software
 2. Acquiring & Preparing Training Images
 3. Training the Model
 4. Creating Example Video
@@ -75,7 +75,7 @@ For any problems or for more on compiling darknet, see https://pjreddie.com/dark
 
 ### Acquiring & Preparing Training Images
 
-Now get this project by executing the command:
+Now get this project, yolov3_time_covers, by executing the command:
 
     >git clone https://github.com/TheOnceAndFutureSmalltalker/yolov3_time_covers.git
 
@@ -100,13 +100,13 @@ In the yolov3_time_covers directory you will see some scripts, darknet training 
 </p>
 <br />
 
-These are the objects that will be inserted into background images and detected by darknet.
+These are the objects that will be inserted into background images and detected by our model.
 
-Training images are acquired from http://cvcl.mit.edu/database.htm.  From the yolov3_time_covers directory, run the following shell script to download all of the images and copy them to the images directory.
+Training images are acquired from http://cvcl.mit.edu/database.htm.  From the yolov3_time_covers directory, run the following shell script to download all of the images and copy them to the `images` directory.
 
     >./get_images.sh
     
-You should now have an images directory with 1500 or so images.  A few of these are shown below.
+You should now have an `images` directory with 1500 or so images.  A few of these are shown below.
 
 <br />
 <p align="center">
@@ -121,11 +121,11 @@ You should now have an images directory with 1500 or so images.  A few of these 
 </p>
 <br />
 
-Now run the following Python script to insert Time magazine covers into these training images.  In addition, frames from the example video, project_video.mp4, are extracted and used as training images as well.
+Now run the following Python script to insert Time Magazine covers into these training images.  In addition, frames from the example video, project_video.mp4, are extracted and used as training images as well.
 
     >python prepare_images.py 
 
-If you inspect some of these images, you will see that most have a Time magazine cover inserted in them somewhere (a few do not).  The sample images from above are shown below with the Time covers inserted.  Yours may appear different as the covers are inserted randomly.
+If you inspect some of these images, you will see that most have a Time Magazine cover inserted in them somewhere (a few do not).  The sample images from above are shown below with the Time covers inserted.  Yours may appear differently as the covers are inserted randomly.
 
 <br />
 <p align="center">
@@ -141,11 +141,11 @@ If you inspect some of these images, you will see that most have a Time magazine
 <br />
 
 
-Also notice that there is now a labels directory.  For each training image in images directory, there is a corresponding .txt file that indicates the size and location of the Time cover in the image.  Each of these files is just one line long since there is only one Time cover in each image.  An example of the contents of one of these files is shown below.
+Also notice that there is now a 'labels' directory.  For each training image in 'images' directory, there is a corresponding '.txt' file that indicates the size and location of the Time cover in the image.  Each of these files is just one line long since there is only one Time cover in each image.  An example of the contents of one of these files is shown below.
 
     0 0.0615234375 0.2638888888888889 0.060546875 0.14583333333333331
 
-Finally, two files, train.txt and val.txt, were created by the script.  These files reference the various images that are used for training or validation respectively.
+Finally, two files, 'train.txt' and 'val.txt', were created by the script.  These files reference the various images that are used for training or validation respectively.
 
 You are now ready to train the model.
 
