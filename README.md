@@ -22,7 +22,6 @@ time_covers | Folder containing images of Time Magazine covers sourced from http
 time.cfg | Darknet config file for training model.  Defines model architecture, training parameters, etc,
 time.data | Darknet file that points to other required files for training.
 time.names | List of classes of detectable objects.  In our case, only one class - timecover.
-time.weights | Final weights after training.
 ytc_utils.py | Utilities supporting other scripts.
 
 
@@ -143,7 +142,7 @@ If you now inspect some of these images, you will see that most have a Time Maga
 <br />
 
 
-Also notice that there is now a `labels` directory as well.  For each training image in `images` directory, there is a corresponding `.txt` file that indicates the size and location of the Time cover in the image.  Each of these files is just one line long since there is only one Time cover in each image.  An example of the contents of one of these files is shown below.
+Also notice that for each training image in `images` directory, there is a corresponding `.txt` file that indicates the size and location of the Time cover in the image.  Each of these files is just one line long since there is only one Time cover in each image.  An example of the contents of one of these files is shown below.
 
     0 0.0615234375 0.2638888888888889 0.060546875 0.14583333333333331
 
@@ -157,32 +156,41 @@ In order to train the model, you must switch back down to the darknet directory.
 
     >cd ../
     
-There are three different variations for training the model:
-1. Starting with pretrained VOC weights
-2. Starting with no pretrained weights and training from scratch
-3. Starting with the pretrained weights provided in this project, `time.weights`
+Now enter the following command to start the training process.
 
-For demonstration purposes, we will use the third option.  For more on using the first two options, see https://pjreddie.com/darknet/yolo/
+    >./darknet detector train yolov3_time_covers/time.data yolov3_time_covers/time.cfg
 
-The weights provided in this project, `time.weights`, are already well trained and sufficient for object detection.  However, we can continue training from this point to try to improve the model even more.  In order to continue training from `time.weights`, enter the following command:
+You will see output that looks like the following.  
+```
+Region 94 Avg IOU: 0.397011, Class: 0.278333, Obj: 0.541654, No Obj: 0.478844, .5R: 0.333333, .75R: 0.000000,  count: 3
+Region 106 Avg IOU: -nan, Class: -nan, Obj: -nan, No Obj: 0.495184, .5R: -nan, .75R: -nan,  count: 0
+Region 82 Avg IOU: -nan, Class: -nan, Obj: -nan, No Obj: 0.510051, .5R: -nan, .75R: -nan,  count: 0
+Region 94 Avg IOU: 0.300388, Class: 0.589520, Obj: 0.411171, No Obj: 0.476367, .5R: 0.000000, .75R: 0.000000,  count: 3
+Region 106 Avg IOU: 0.142791, Class: 0.579211, Obj: 0.353023, No Obj: 0.495448, .5R: 0.000000, .75R: 0.000000,  count: 1
+Region 82 Avg IOU: -nan, Class: -nan, Obj: -nan, No Obj: 0.513282, .5R: -nan, .75R: -nan,  count: 0
+Region 94 Avg IOU: 0.193806, Class: 0.441971, Obj: 0.286082, No Obj: 0.475946, .5R: 0.000000, .75R: 0.000000,  count: 3
+Region 106 Avg IOU: 0.043656, Class: 0.243478, Obj: 0.594254, No Obj: 0.493858, .5R: 0.000000, .75R: 0.000000,  count: 1
+Region 82 Avg IOU: -nan, Class: -nan, Obj: -nan, No Obj: 0.511844, .5R: -nan, .75R: -nan,  count: 0
+Region 94 Avg IOU: 0.207007, Class: 0.495040, Obj: 0.078412, No Obj: 0.476503, .5R: 0.000000, .75R: 0.000000,  count: 2
+Region 106 Avg IOU: 0.197296, Class: 0.465678, Obj: 0.383829, No Obj: 0.494798, .5R: 0.000000, .75R: 0.000000,  count: 1
+```
+Each line indicates current level of success for detecting objects in the image.  For each iteration, about every ten seconds or so depending on your hardware, you will see an iteration summary like the following:  
 
-    >./darknet .........
+```3: 910.298218, 910.967896 avg loss, 0.000000 rate, 9.746541 seconds, 192 images```
 
-You will see output that looks like the following.  For each iteration, about every ten seconds or so depending on your hardware, you will see a output like the following:  
+An iteration is an entire pass through the training images list.  What you are looking for is the avg loss number, currently 910.967896 in the example above, to go down. Training can be stopped when the average loss is less than 0.06.
 
+Each 100 iterations of training creates a new weights file with updated weights.  These are found in the yolov3_time_covers/backup directory.  you can stop training any time and resume with the most recent weights file.  Typically, training takes hours, if not days!  Even with CUDA and GPUs.  For more on training darknet models, see https://pjreddie.com/darknet/yolo/.
 
+Once we have completed training the model, we can test it on some sample images.  We will use the most recent weights file saved in the backup subdirectory.  In this example, the file is time_1800.weights.  The 1800 indicates that this weights file was created after 1800 iterations. Execute the command below.
 
-What we are looking for as third value, the average loss, to consistently be below 0.06.  Each 100 iterations of training creates a new weights file with updated weights.  These are found in the yolov3_time_covers/backup directory.  You can continue training if you like, however, the remainder of this demonstration will rely on the pre-trained weights provided in the project.  Typically, training takes hours, if not days!  Even with CUDA and GPUs.
-
-In order to test the model, we can run it on some sample images.  In order to do so, execute the following command.
-
-    >./darknet .........
+    >./darknet detector test yolov3_time_covers/time.data yolov3_time_covers/time.cfg yolov3_time_covers/backup/time_1800.weights yolov3_time_covers/images/a223049.jpg
     
-This will produce a copy of the test image named, .png, that shows the detected objects.  Look at this image to verify the magazine covers were adequately detected and labeled.
+This will produce a copy of the test image named, .png, that shows the detected objects.  Look at this image to verify the magazine covers were adequately detected and labeled.  The results for the image above are shown below
 
 Now we will test our model for mean Average Precision, or mAP.  
 
-For more on training darknet models, go to https://pjreddie.com/darknet/yolo/.
+
 
 ### Creating Example Video
 
