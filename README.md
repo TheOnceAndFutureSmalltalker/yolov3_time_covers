@@ -18,7 +18,7 @@ get_images.sh | script which downloads images from http://cvcl.mit.edu/database.
 get_video_frames.py | Capatures frames from input_video.mp4 and copies them to a folder for darknet model detection.
 prepare_images.py | Prepares training images by placing Time magazine covers in them.  Creates label files too.
 project_video.mp4 | Video taken from camera mounted on self driving car as it drives down highway.  From Udacity.
-time_covers | Folder containing images of Time Magazine covers sourced from http://time.com/vault/year/2018/
+time_covers | Folder containing images of Time Magazine covers sourced from http://time.com/vault/year/2018/.
 time.cfg | Darknet config file for training model.  Defines model architecture, training parameters, etc,
 time.data | Darknet file that points to other required files for training.
 time.names | List of classes of detectable objects.  In our case, only one class - timecover.
@@ -158,15 +158,15 @@ In order to train the model, you must switch back down to the darknet directory.
 There are three different variations for training the model:
 1. Using pretrained VOC weights
 2. Using no pretrained weights and training from scratch
-3. Using the pretrained weights, tiem.weights, provided in this project
+3. Using the pretrained weights provided in this project, time.weights
 
 For demonstration purposes, we will use the third option.  For more on using the first two options, see https://pjreddie.com/darknet/yolo/
 
-The weights provided in this project, time.weights, are already well trained and sufficient for object detection.  However, we can continue training from this point to try to improve the model even more.  In order to continue training the time.weights, enter the following command:
+The weights provided in this project, time.weights, are already well trained and sufficient for object detection.  However, we can continue training from this point to try to improve the model even more.  In order to continue training from the time.weights, enter the following command:
 
     >./darknet .........
 
-You will see output that looks like the following.  For each iteration, about every ten sconds or so depending on your hardware, you will see a line like the following.  
+You will see output that looks like the following.  For each iteration, about every ten seconds or so depending on your hardware, you will see a output like the following:  
 
 
 
@@ -180,6 +180,7 @@ This will produce a copy of the test image named, .png, that shows the detected 
 
 Now we will test our model for mean Average Precision, or mAP.  
 
+For more on training darknet models, go to https://pjreddie.com/darknet/yolo/.
 
 ### Creating Example Video
 
