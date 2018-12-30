@@ -7,7 +7,7 @@ Created on Sat Dec 29 13:39:10 2018
 
 @author: Tim
 """
-
+#!/usr/bin/python
 import cv2;
 import os
 from moviepy.editor import VideoFileClip
