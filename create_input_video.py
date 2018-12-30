@@ -19,9 +19,11 @@ class FrameModifier:
     def __init__(self, time_cover_file='time_covers/optimists-final-cover.jpg', scale=0.2):
         self.frame_number = 0;
         self.scale = scale
-        self.time_cover_image_1 = mpimg.imread(time_cover_file)
+        self.time_cover_image_1 = cv2.imread(time_cover_file)
+        self.time_cover_image_1 = cv2.cvtColor(self.time_cover_image_1, cv2.COLOR_BGR2RGB)
         self.time_cover_image_1 = scaleImage(self.time_cover_image_1, 0.3)
-        self.time_cover_image_2 = mpimg.imread('time_covers/g9510-20_ford-cover.jpg')
+        self.time_cover_image_2 = cv2.imread('time_covers/g9510-20_ford-cover.jpg')
+        self.time_cover_image_2 = cv2.cvtColor(self.time_cover_image_2, cv2.COLOR_BGR2RGB)
         self.time_cover_image_2 = scaleImage(self.time_cover_image_2, 0.4)
         
     def addTimeCover(self, frame):
