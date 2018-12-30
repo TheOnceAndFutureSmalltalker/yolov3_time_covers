@@ -122,7 +122,7 @@ You should now have an `images` directory with 1200 or so images.  A few of thes
 </p>
 <br />
 
-Now run the following Python script to insert Time Magazine covers into these training images.  In addition, about 300 frames from the example video, project_video.mp4, are extracted and used as training images as well.
+Now run the following Python script to insert Time Magazine covers into these training images.  In addition, about 300 frames from the example video, project_video.mp4, are extracted and used as training images as well.  This may take up to 30 seconds 
 
     >python prepare_images.py 
 
