@@ -186,7 +186,14 @@ Once we have completed training the model, we can test it on some sample images.
 
     >./darknet detector test yolov3_time_covers/time.data yolov3_time_covers/time.cfg yolov3_time_covers/backup/time_1800.weights yolov3_time_covers/images/a223049.jpg
     
-This will produce a copy of the test image named, .png, that shows the detected objects.  Look at this image to verify the magazine covers were adequately detected and labeled.  The results for the image above are shown below
+This will produce a copy of the test image named, predictions.png, that shows the detected objects.  Look at this image to verify the magazine covers were adequately detected and labeled.  The resulting image for the command above is shown below.
+
+<br />
+<br />
+<p align="center"><img src='examples/predictions_art165.png' > </p>
+<p align="center"><b>Detected Time magazine Cover.</b></p>
+<br />
+<br />
 
 Now we will test our model for mean Average Precision, or mAP.  
 
