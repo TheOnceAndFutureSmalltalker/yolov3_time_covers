@@ -1,17 +1,15 @@
 # -*- coding: utf-8 -*-
 """
+This script builds input_video.mp4 based on project_video.mp4 by placing
+Time magazine covers in the video as if they are moving along the road
+with traffic.
+
 Created on Sat Dec 29 13:25:01 2018
 
 @author: Tim
 """
 
-import cv2;
-import numpy as np
-from matplotlib.pyplot import imshow
-import matplotlib.image as mpimg
-import glob
-import random
-import os
+
 from moviepy.editor import VideoFileClip
 from ytc_utils import *
 
@@ -56,5 +54,7 @@ def addTimeCoversToVideo():
     out_clip = in_clip.fl_image(fm.addTimeCover).subclip(0,30)
     out_clip.write_videofile('input_video.mp4', audio=False)
     in_clip.reader.close()
+    
+    
     
 addTimeCoversToVideo()

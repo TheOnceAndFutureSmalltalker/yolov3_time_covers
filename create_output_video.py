@@ -1,16 +1,12 @@
 # -*- coding: utf-8 -*-
 """
+Script for creating output_video.mp4 from images contained in frames_out folder.
+
 Created on Sat Dec 29 14:26:11 2018
 
 @author: Tim
 """
 
-import cv2;
-import numpy as np
-from matplotlib.pyplot import imshow
-import matplotlib.image as mpimg
-import glob
-import random
 import os
 from moviepy.editor import ImageSequenceClip
 from ytc_utils import *

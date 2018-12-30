@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
 """
+Useful functions for other scripts.
+
 Created on Fri Dec 28 21:38:07 2018
 
 @author: Tim
 """
 
 import cv2;
-import numpy as np
-from matplotlib.pyplot import imshow
-import matplotlib.image as mpimg
 import glob
 import random
 import os

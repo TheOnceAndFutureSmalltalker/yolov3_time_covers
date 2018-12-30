@@ -1,22 +1,19 @@
 # -*- coding: utf-8 -*-
 """
+save all frames from input_video.mp4 created with create_input_video.py
+these frames will be labeled using yolo and then re-assembled into a final video
+
 Created on Sat Dec 29 13:39:10 2018
 
 @author: Tim
 """
 
 import cv2;
-import numpy as np
-from matplotlib.pyplot import imshow
-import matplotlib.image as mpimg
-import glob
-import random
 import os
 from moviepy.editor import VideoFileClip
 from ytc_utils import *
 
-# save all frames from time cover video created above
-# these frames will be labeled using yolo and then re-assembled into a final video
+
 def saveTimeCoverFrames():
     if os.path.isdir(os.path.join(os.getcwd(), 'frames_in')):
         print("delete frames_in folder contents")

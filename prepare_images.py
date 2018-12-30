@@ -1,17 +1,17 @@
 # -*- coding: utf-8 -*-
 """
+This script creates training images by placing time cover magazines into
+background images acquired from http://cvcl.mit.edu/database.htm and from
+video frames from project_video.mp4.
+
 Created on Fri Dec 28 20:15:54 2018
 
 @author: Tim
 """
 #! /usr/bin/python
 import cv2;
-import numpy as np
-from matplotlib.pyplot import imshow
-import matplotlib.image as mpimg
 import glob
 import random
-import os
 from moviepy.editor import VideoFileClip
 from ytc_utils import *
 
