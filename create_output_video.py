@@ -6,7 +6,7 @@ Created on Sat Dec 29 14:26:11 2018
 
 @author: Tim
 """
-
+#!/usr/bin/python
 import os
 from moviepy.editor import ImageSequenceClip
 from ytc_utils import *
