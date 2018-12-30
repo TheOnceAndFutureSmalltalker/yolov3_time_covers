@@ -18,6 +18,7 @@ get_images.sh | script which downloads images from http://cvcl.mit.edu/database.
 get_video_frames.py | Capatures frames from input_video.mp4 and copies them to a folder for darknet model detection.
 prepare_images.py | Prepares training images by placing Time magazine covers in them.  Creates label files too.
 project_video.mp4 | Video taken from camera mounted on self driving car as it drives down highway.  From Udacity.
+time_covers | Folder containing images of Time Magazine covers sourced from http://time.com/vault/year/2018/
 time.cfg | Darknet config file for training model.  Defines model architecture, training parameters, etc,
 time.data | Darknet file that points to other required files for training.
 time.names | List of classes of detectable objects.  In our case, only one class - timecover.
