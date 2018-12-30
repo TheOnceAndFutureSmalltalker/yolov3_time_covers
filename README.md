@@ -113,7 +113,7 @@ You should now have an images directory with 1500 or so images.  A few of these 
     <tr>
         <td><img src='examples/a223049_raw.jpg' width="150"></td>
         <td><img src='examples/art1030_raw.jpg' width="150"></td>
-        <td><img src='examples/art366_raw.jpg' width="150"></td>
+        <td><img src='examples/art336_raw.jpg' width="150"></td>
         <td><img src='examples/fie13_raw.jpg' width="150"></td>
     </tr>    
 </table>
@@ -124,7 +124,7 @@ Now run the following Python script to insert Time magazine covers into these tr
 
     >python prepare_images.py 
 
-If you inspect some of these images, you will see that most have a Time magazine cover inserted in them somewhere (a few do not).  The images from above are shown below with the Time covers inserted.  Yours may appear different as the covers are inserted randomly.
+If you inspect some of these images, you will see that most have a Time magazine cover inserted in them somewhere (a few do not).  The sample images from above are shown below with the Time covers inserted.  Yours may appear different as the covers are inserted randomly.
 
 <br />
 <p align="center">
@@ -132,7 +132,7 @@ If you inspect some of these images, you will see that most have a Time magazine
     <tr>
         <td><img src='examples/a223049.jpg' width="150"></td>
         <td><img src='examples/art1030.jpg' width="150"></td>
-        <td><img src='examples/art366.jpg' width="150"></td>
+        <td><img src='examples/art336.jpg' width="150"></td>
         <td><img src='examples/fie13.jpg' width="150"></td>
     </tr>    
 </table>
@@ -140,17 +140,77 @@ If you inspect some of these images, you will see that most have a Time magazine
 <br />
 
 
-Also notice that there is a labels directory.  For each training image in images directory, there is a corresponding .txt file that indicates the size and location of the Time cover in the image.  Each of these files is just one line long since there is only one Time cover in each image.  An example of one of these files is shown below.
+Also notice that there is now a labels directory.  For each training image in images directory, there is a corresponding .txt file that indicates the size and location of the Time cover in the image.  Each of these files is just one line long since there is only one Time cover in each image.  An example of the contents of one of these files is shown below.
 
     0 0.0615234375 0.2638888888888889 0.060546875 0.14583333333333331
 
-Finally, two files, train.txt and val.txt were created.  These files reference the various images that are used for training or validation respectively.
+Finally, two files, train.txt and val.txt, were created by the script.  These files reference the various images that are used for training or validation respectively.
 
 You are now ready to train the model.
 
 ### Training the Model
 
+In order to train the model, you must switch back down to the darknet directory.
+
+    >cd ../
+    
+There are three different variations for training the model:
+1. Using pretrained VOC weights
+2. Using no pretrained weights and training from scratch
+3. Using the pretrained weights, tiem.weights, provided in this project
+
+For demonstration purposes, we will use the third option.  For more on using the first two options, see https://pjreddie.com/darknet/yolo/
+
+The weights provided in this project, time.weights, are already well trained and sufficient for object detection.  However, we can continue training from this point to try to improve the model even more.  In order to continue training the time.weights, enter the following command:
+
+    >./darknet .........
+
+You will see output that looks like the following.  For each iteration, about every ten sconds or so depending on your hardware, you will see a line like the following.  
+
+
+
+What we are looking for as third value, the average loss, to consistently be below 0.06.  Each 100 iterations of training creates a new weights file with updated weights.  These are found in the yolov3_time_covers/backup directory.  You can continue training if you like, however, the remainder of this demonstration will rely on the pre-trained weights provided in the project.  Typically, training takes hours, if not days!  Even with CUDA and GPUs.
+
+In order to test the model, we can run it on some sample images.  In order to do so, execute the following command.
+
+    >./darknet .........
+    
+This will produce a copy of the test image named, .png, that shows the detected objects.  Look at this image to verify the magazine covers were adequately detected and labeled.
+
+Now we will test our model for mean Average Precision, or mAP.  
+
 
 ### Creating Example Video
 
+This project comes with a 30 second video, project_video.mp4, shot from the dashboard of a car as it drives down the highway.  Go ahead and view this video.
+
+The first thing we will do is create a copy of this video, input_video.mp4, placing Time Magazine covers in the video as if they are traveling down the road with the rest of the traffic.  In order to do this,  execute the following Python script.
+
+    >python create_input_video.py
+    
+Now view the resulting video, input_video.mp4, to verify the changes were made.  This is what we will use as the input to the darknet detector.  But in order to do this, we must first deconstruct the video into its constituent frames.  In order to do this, execute the following Python script.
+
+    >python get_video_frames.py
+    
+Now you will see two new directories, frames_in and frames_out.  The frames_in directory contains the video frames and the frames_out is as of yet empty.
+
+Now we will run our trained model on the video frames and put the results in the frames_out directory.  In order to do this, switch to the darknet folder 
+
+    > cd ../
+
+and run the following command.
+
+    >./darknet yolov3_time_covers/time.....
+
+When this command has completed, the frames_out directory will be filled with copies of the frame images with the Time Magazine covers detected and marked.  
+
+Now all that remains is to build another video, output_video.mp4, with the images in frames_out directory.  In order to do this, swithc back to the yolov3_time_covers directory,
+
+    > cd yolov3_time_covers
+
+and execute the following Python script:
+
+    >python create_output_video.py
+
+This will create the final video with the Time Magazine covers detected and labeled as they travel down the road.
 
