@@ -36,7 +36,10 @@ The instructions are divided into 4 parts:
 
 Information on Darknet and YOLO can be found at https://pjreddie.com/darknet/.
 
-This demonstration uses the fork of darknet found at https://github.com/AlexeyAB/darknet because it includes some useful enhancements.  It saves the model every 100 iterations, it performs detection on an entire filder of images, and it calculates mAP.
+This demonstration uses the fork of darknet found at https://github.com/AlexeyAB/darknet because it includes some useful enhancements:
+1. Saves the model every 100 iterations
+2. Performs detection on an entire folder of images
+3. Calculates mAP
 
 Get the darknet project by executing the following:
 
@@ -56,7 +59,21 @@ To make sure everything compiled correctly, execute the following:
 
     >./darknet
     
-for any problems or for more on compiling darknet, see https://pjreddie.com/darknet/install/.
+you should get the following output.
+
+    >usage: ./darknet <function>
+    
+For any problems or for more on compiling darknet, see https://pjreddie.com/darknet/install/.
+
+Now get this project by executing the command:
+
+    >git clone 
+
+And now switch to the yolov3_time_covers folder.  
+
+    > cd yolov3_time_covers
+
+Image prep and video operations will be handled in this directory.  Training and other darknet commands will be executed from the darknet directory.
 
 ### Acquiring & Preparing Training Images
 
