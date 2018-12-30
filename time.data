@@ -1,0 +1,7 @@
+classes= 1
+train  = /home/ubuntu/darknet/time/train.txt
+valid  = /home/ubuntu/darknet/time/val.txt
+names = /home/ubuntu/darknet/time/time.names
+backup = /home/ubuntu/darknet/time/backup
+
+
