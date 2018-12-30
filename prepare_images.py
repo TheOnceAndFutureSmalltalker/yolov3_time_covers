@@ -63,6 +63,7 @@ def createInternetTrainingImages():
         else:
             prepared_text_file_info = ''
         prepared_text_file = image_file.replace('.jpg', '.txt')
+        #prepared_text_file = prepared_text_file.replace('images', 'labels')
         writeTextFile(prepared_text_file, prepared_text_file_info)
         
 def createVideoFrameTrainingImages():
@@ -113,6 +114,7 @@ def createVideoFrameTrainingImages():
             prepared_text_file_info = ''
             
         prepared_text_file = prepared_file.replace('.jpg', '.txt')
+        #prepared_text_file = prepared_text_file.replace('images', 'labels')
         writeTextFile(prepared_text_file, prepared_text_file_info)
         
         image_number += 1
