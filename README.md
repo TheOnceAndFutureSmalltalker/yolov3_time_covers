@@ -174,7 +174,7 @@ Region 82 Avg IOU: -nan, Class: -nan, Obj: -nan, No Obj: 0.511844, .5R: -nan, .7
 Region 94 Avg IOU: 0.207007, Class: 0.495040, Obj: 0.078412, No Obj: 0.476503, .5R: 0.000000, .75R: 0.000000,  count: 2
 Region 106 Avg IOU: 0.197296, Class: 0.465678, Obj: 0.383829, No Obj: 0.494798, .5R: 0.000000, .75R: 0.000000,  count: 1
 ```
-Each line indicates current level of success for detecting objects in the image.  For each iteration, about every ten seconds or so depending on your hardware, you will see an iteration summary like the following:  
+Each line indicates current level of success for detecting objects in the image.  For each iteration, about every ten seconds or so depending on your hardware, you will see an iteration summary like the following for iteration 3:  
 
 ```3: 910.298218, 910.967896 avg loss, 0.000000 rate, 9.746541 seconds, 192 images```
 
