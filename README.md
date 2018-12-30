@@ -152,9 +152,9 @@ You are now ready to train the model.
 
 ### Training the Model
 
-In order to train the model, you must switch back down to the darknet directory.
+In order to train the model, you must switch back to the `darknet` directory.
 
-    >cd ../
+    >cd ..
     
 Now enter the following command to start the training process.
 
@@ -180,13 +180,13 @@ Each line indicates current level of success for detecting objects in the image.
 
 An iteration is an entire pass through the training images list.  What you are looking for is the avg loss number, currently 910.967896 in the example above, to go down. Training can be stopped when the average loss is less than 0.06.
 
-Each 100 iterations of training creates a new weights file with updated weights.  These are found in the yolov3_time_covers/backup directory.  you can stop training any time and resume with the most recent weights file.  Typically, training takes hours, if not days!  Even with CUDA and GPUs.  For more on training darknet models, see https://pjreddie.com/darknet/yolo/.
+Each 100 iterations of training creates a new weights file with updated weights.  These are found in the `yolov3_time_covers/backup` directory.  You can stop training any time and resume with the most recent weights file.  Typically, training takes hours, if not days!  Even with CUDA and GPUs.  For more on training darknet models, see https://pjreddie.com/darknet/yolo/.
 
-Once we have completed training the model, we can test it on some sample images.  We will use the most recent weights file saved in the backup subdirectory.  In this example, the file is time_1800.weights.  The 1800 indicates that this weights file was created after 1800 iterations. Execute the command below.
+Once we have completed training the model, we can test it on some sample images.  We will use the most recent weights file saved in the backup subdirectory.  In this example, the file is `time_1800.weights`.  The 1800 indicates that this weights file was created after 1800 iterations. Execute the command below.
 
     >./darknet detector test yolov3_time_covers/time.data yolov3_time_covers/time.cfg yolov3_time_covers/backup/time_1800.weights yolov3_time_covers/images/a223049.jpg
     
-This will produce a copy of the test image named, predictions.png, that shows the detected objects.  Look at this image to verify the magazine covers were adequately detected and labeled.  The resulting image for the command above is shown below.
+This will produce a copy of the test image named, `predictions.png`that shows the detected objects.  Look at this image to verify the magazine covers were adequately detected and labeled.  The resulting image for the command above is shown below.
 
 <br />
 <br />
