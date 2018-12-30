@@ -65,18 +65,40 @@ you should get the following output.
     
 For any problems or for more on compiling darknet, see https://pjreddie.com/darknet/install/.
 
-Now get this project by executing the command:
 
-    >git clone 
-
-And now switch to the yolov3_time_covers folder.  
-
-    > cd yolov3_time_covers
-
-Image prep and video operations will be handled in this directory.  Training and other darknet commands will be executed from the darknet directory.
 
 ### Acquiring & Preparing Training Images
 
+Now get this project by executing the command:
+
+    >git clone https://github.com/TheOnceAndFutureSmalltalker/yolov3_time_covers.git
+
+Now switch to the yolov3_time_covers folder.  
+
+    >cd yolov3_time_covers
+
+Image prep and video operations will be handled in this directory.  Training and other darknet commands will be executed from the darknet directory.
+
+Training images are acquired from http://cvcl.mit.edu/database.htm.  From the yolov3_time_covers directory, run the following shell script to download all of the images and copy them to the images directory.
+
+    >./get_images.sh
+    
+You should now have an images directory with 1500 or so images.  
+
+Now run the following Python script to insert Time magazine covers into these training images.  In addition, frames from the example video, project_video.mp4, are extracted and used as training images as well.
+
+    >python prepare_images.py 
+
+If you inspect some of these images, you will see that most have a Time magazine cover inserted in them somewhere (a few do not).  An example is shown below.
+
+
+Also notice that there is a labels directory.  For each training image in images directory, there is a corresponding .txt file that indicates the size and location of the Time cover in the image.  Each of these files is just one line long since there is only one Time cover in each image.  An example of one of these files is shown below.
+
+    0 0.0615234375 0.2638888888888889 0.060546875 0.14583333333333331
+
+Finally, two files, train.txt and val.txt were created.  These files reference the various images that are used for training or validation respectively.
+
+You are now ready to train the model.
 
 ### Training the Model
 
