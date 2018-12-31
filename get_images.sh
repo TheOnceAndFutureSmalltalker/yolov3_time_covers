@@ -10,7 +10,7 @@ else
   mkdir labels
 fi
 
-if [ ! -d "backup"]; then
+if [ ! -d "backup" ]; then
   mkdir backup
 fi
 
