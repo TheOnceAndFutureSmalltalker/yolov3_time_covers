@@ -42,7 +42,7 @@ The instructions are divided into 4 sequential parts:
 
 Information on Darknet and YOLO can be found at https://pjreddie.com/darknet/yolo/.
 
-The standard reference implementation for Darknet/YOLO is found at https://pjreddie.com/darknet/. This demonstration uses the fork of Darknet found at https://github.com/AlexeyAB/darknet because it includes some useful enhancements:
+The standard reference implementation for Darknet/YOLO is found at https://github.com/pjreddie/darknet. This demonstration uses the fork of Darknet found at https://github.com/AlexeyAB/darknet because it includes some useful enhancements:
 1. Saves the model every 100 iterations
 2. Performs detection on an entire folder of images
 3. Calculates mAP
