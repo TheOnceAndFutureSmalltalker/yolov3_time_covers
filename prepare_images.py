@@ -76,11 +76,11 @@ def createVideoFrameTrainingImages():
     frame_number = 0
 
     for image in in_clip.subclip(0,30).iter_frames():
-        if image is None or image.size == 0:
-            print('zero sized file')
-            continue
+        # only use 2 out of 5 of the 750 frames for a total of 300 images
         frame_number += 1
         if frame_number % 5 > 1:
+            continue
+        if image is None or image.size == 0:
             continue
         image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
         if image_number % 20 != 0:
