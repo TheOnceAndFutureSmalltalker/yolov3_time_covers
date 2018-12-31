@@ -251,4 +251,20 @@ This will create the final video, `output_video.mp4`, with the Time Magazine cov
 
 Additional Thoughts
 -------
+The scope of the exercise was purposefully kept narrow to minimize feature prep time and training time.  
+
+* There is only one class, timecover.  Normally there are many classes - dog, cat, person, car, etc.  This greatly reduces training time.
+
+* Very few training images are required in order to achieve adequate precision.  Normally hudreds of thousands of images are required.  This increases both prep time and training time.
+
+* A significant portion of the training images were drawn from the target video, making the model rather specific to the task.  
+
+* There was not enough variety in the background images.  A wider set of background images would cause model to converge more slowly.
+
+* Except for size, the Time Cover images were not modified in any realistic and general way.  A more realistic/general approach would include image modifications such as rotation, occlusion/overlap, perspective transformation, and obscuring with fog/mist.  This simplification makes image prep easier.  This also reduces training time as the model can converge more quickly on identifying the magazine covers.
+
+All of these items would create a much more robust and general model; however, they come at the additional cost of data prep time and training time.
+
+
+
 
