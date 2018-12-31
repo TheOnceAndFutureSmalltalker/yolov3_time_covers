@@ -4,8 +4,14 @@ else
   mkdir images
 fi
 
-if [ ! -d "backup"]; then
+if [ -d  "labels" ]; then
+  rm labels/*.*
+else
   mkdir labels
+fi
+
+if [ ! -d "backup"]; then
+  mkdir backup
 fi
 
 wget http://cvcl.mit.edu/scenedatabase/highway.zip
