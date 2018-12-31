@@ -33,10 +33,10 @@ The instructions are divided into 4 sequential parts:
 
 1. Installing Darknet/YOLO Software
 2. Acquiring & Preparing Training Images
-3. Training the Model
+3. Training & Testing the Model
 4. Creating Example Video
 
-**Prerequisites:**  You must have a unix/linux system with at least one GPU (otherwise training will take days!), Python 3.5 or higher with OpenCV, NumPy, and MoviePy installed.
+**Prerequisites:**  You must have a unix/linux system with at least one GPU (otherwise training will take days!), Python 3.5 or higher with OpenCV and MoviePy installed.
 
 ### Installing Darknet 
 
