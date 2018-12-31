@@ -79,13 +79,13 @@ Now get this project, yolov3_time_covers, by executing the command from `darknet
 
     >git clone https://github.com/TheOnceAndFutureSmalltalker/yolov3_time_covers.git
 
-Now switch to the `yolov3_time_covers` folder.  
+You should now have a `yolov3_time_covers` subdirectory within the `darknet` directory.  Switch to the `yolov3_time_covers` directory.  
 
     >cd yolov3_time_covers
 
-Image prep and video operations will be handled in this directory.  Training and other darknet commands will be executed from the `darknet` directory.
+Image prep and video operations will be handled in the `yolov3_time_covers` directory.  Training and other darknet commands will be executed from the `darknet` directory.
 
-In the `yolov3_time_covers` directory you will see some scripts, darknet training files, an `examples` subdirectory, and a `time_covers` subdirectory containing images of Time Magazine covers.  These were acquired from http://time.com/vault/year/2018/.  A sample of these are shown below.
+In the `yolov3_time_covers` directory you will see some scripts, darknet training files, an `examples` subdirectory, and a `time_covers` subdirectory containing images of Time Magazine covers.  These Time Magazine covers were acquired from http://time.com/vault/year/2018/.  These are the objects that will be inserted into background images and detected by our model.  A sample of these are shown below.
 
 <br />
 <p align="center">
@@ -100,9 +100,8 @@ In the `yolov3_time_covers` directory you will see some scripts, darknet trainin
 </p>
 <br />
 
-These are the objects that will be inserted into background images and detected by our model.
 
-Training background images are acquired from http://cvcl.mit.edu/database.htm.  From the `yolov3_time_covers` directory, run the following shell script to download all of the images and copy them to the `images` directory.
+Training background images are acquired from http://cvcl.mit.edu/database.htm.  While still in the `yolov3_time_covers` directory, run the following shell script to download all of the images and copy them to the `images` directory.
    
     >chmod +x get_images.sh
     >./get_images.sh
@@ -122,11 +121,11 @@ You should now have an `images` directory with 1200 or so images.  A few of thes
 </p>
 <br />
 
-Now run the following Python script to insert Time Magazine covers into these training images.  In addition, about 750 frames from the example video, project_video.mp4, are extracted and used as training images as well.  This may take up to 30 seconds or so. 
+Now run the following Python script to insert Time Magazine covers into these training images.  In addition, about 300 frames from the example video, project_video.mp4, are extracted and used as training images as well.  This may take up to 30 seconds or more. 
 
     >python prepare_images.py 
 
-If you now inspect some of these images, you will see that most have a Time Magazine cover inserted in them somewhere (a few do not).  The sample images from above are shown below with the Time covers inserted.  Yours may appear differently as the covers are sized and placed  randomly.
+If you now inspect some of these images, you will see that most have a Time Magazine cover inserted in them somewhere (a few do not).  The sample images from above are shown below with the Time covers inserted.  Yours may appear differently as the covers are sized and placed randomly.
 
 <br />
 <p align="center">
@@ -180,13 +179,13 @@ Each line indicates current level of success for detecting objects in the image.
 
 An iteration is an entire pass through the training images list.  What you are looking for is the avg loss number, currently 910.967896 in the example above, to go down. Training can be stopped when the average loss is less than 0.06.
 
-Each 100 iterations of training creates a new weights file with updated weights.  These are found in the `yolov3_time_covers/backup` directory.  You can stop training any time and resume with the most recent weights file.  Typically, training takes hours, if not days!  Even with CUDA and GPUs.  For more on training darknet models, see https://pjreddie.com/darknet/yolo/.
+Each 100 iterations of training creates a new weights file with updated weights.  These are found in the `yolov3_time_covers/backup` directory.  You can stop training any time and resume with the most recent weights file.  Typically, training takes hours, if not days!  Even with CUDA and GPUs!  For more on training darknet models, see https://pjreddie.com/darknet/yolo/.
 
 Once we have completed training the model, we can test it on some sample images.  We will use the most recent weights file saved in the backup subdirectory.  In this example, the file is `time_1800.weights`.  The 1800 indicates that this weights file was created after 1800 iterations. Execute the command below.
 
     >./darknet detector test yolov3_time_covers/time.data yolov3_time_covers/time.cfg yolov3_time_covers/backup/time_1800.weights yolov3_time_covers/images/a223049.jpg
     
-This will produce a copy of the test image named, `predictions.png`that shows the detected objects.  Look at this image to verify the magazine covers were adequately detected and labeled.  The resulting image for the command above is shown below.
+This will produce a copy of the test image named that shows the detected objects.  This copy is saved as `predictions.png`.  Look at this image to verify the magazine covers were adequately detected and labeled.  The resulting image for the command above is shown below.
 
 <br />
 <br />
@@ -195,15 +194,15 @@ This will produce a copy of the test image named, `predictions.png`that shows th
 <br />
 <br />
 
-Now we will test our model for mean Average Precision, or mAP.  
+Now we will test our model for mean Average Precision, or mAP.  We will run the model against both training and validation data sets.
 
 
 
 ### Creating Example Video
 
-This project comes with a 30 second video, project_video.mp4, shot from the dashboard of a car as it drives down the highway.  Go ahead and view this video.
+This project comes with a 30 second video, project_video.mp4, shot from the dashboard of a car as it drives down the highway.  Go ahead and view this video.  Some of the frames from this video were used in the training process.
 
-The first thing we will do is create a copy of this video, input_video.mp4, placing Time Magazine covers in the video as if they are traveling down the road with the rest of the traffic.  In order to do this, switch back to the yolovs_time_covers directory,
+The first thing we will do is create a copy of this video, `input_video.mp4`, placing Time Magazine covers in the video as if they are traveling down the road with the rest of the traffic.  In order to do this, switch back to the `yolov3_time_covers` directory,
 
     >cd yolov3_time_covers
 
@@ -215,9 +214,9 @@ Now view the resulting video, `input_video.mp4`, to verify the changes were made
 
     >python get_video_frames.py
     
-Now you will see two new directories, frames_in and frames_out.  The frames_in directory contains the video frames and the frames_out is as of yet empty.
+Now you will see two new directories, `frames_in` and `frames_out`.  The `frames_in` directory contains the video frames and the `frames_out` is as of yet empty.
 
-Now we will run our trained model on the video frames and put the results in the frames_out directory.  In order to do this, temporarily switch back to the darknet folder 
+Now we will run our trained model on the video frames and put the results in the `frames_out` directory.  In order to do this, temporarily switch back to the `darknet` folder. 
 
     >cd ..
 
@@ -238,9 +237,9 @@ Now we are ready to run detection on all of our video frames.  Execute the follo
 
     > ./darknet detector test yolov3_time_covers/time.data yolov3_time_covers/time.cfg yolov3_time_covers/backup/time_1800.weights batch yolov3_time_covers/frames_in/ yolov3_time_covers/frames_out/ >./results.txt
 
-This may take several minutes to complete.  When this command has completed, the `frames_out` directory will be filled with copies of the frame images with the Time Magazine covers detected and marked.  
+This may take several minutes to complete.  When this command has completed, the `frames_out` directory will be filled with copies of the video frame images with the Time Magazine covers detected and marked.  
 
-Now all that remains is to build another video, `output_video.mp4`, with the images in frames_out directory.  In order to do this, switch back to the `yolov3_time_covers directory`.
+Now all that remains is to build another video, `output_video.mp4`, with the images in `frames_out` directory.  In order to do this, switch back to the `yolov3_time_covers` directory.
 
     > cd yolov3_time_covers
 
@@ -248,5 +247,8 @@ and execute the following Python script:
 
     >python create_output_video.py
 
-This will create the final video with the Time Magazine covers detected and labeled as they travel down the road.
+This will create the final video, `output_video.mp4`, with the Time Magazine covers detected and labeled as they travel down the road.
+
+Additional Thoughts
+-------
 
