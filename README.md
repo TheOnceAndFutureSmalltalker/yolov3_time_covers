@@ -182,8 +182,6 @@ An iteration is an entire pass through the training images list.  What you are l
 
 Each 100 iterations of training creates a new weights file with updated weights.  These are found in the `yolov3_time_covers/backup` directory.  You can stop training any time and resume with the most recent weights file.  Typically, training takes hours, if not days!  Even with CUDA and GPUs.  For more on training darknet models, see https://pjreddie.com/darknet/yolo/.
 
-**Note:**  If you experience core dumps, try installing the version of darknet at https://github.com/pjreddie/darknet and training with that.
-
 Once we have completed training the model, we can test it on some sample images.  We will use the most recent weights file saved in the backup subdirectory.  In this example, the file is `time_1800.weights`.  The 1800 indicates that this weights file was created after 1800 iterations. Execute the command below.
 
     >./darknet detector test yolov3_time_covers/time.data yolov3_time_covers/time.cfg yolov3_time_covers/backup/time_1800.weights yolov3_time_covers/images/a223049.jpg
@@ -238,11 +236,11 @@ Now rebuild darknet.
 
 Now we are ready to run detection on all of our video frames.  Execute the following darknet command.
 
-    > ./darknet detector test cfg/coco.data cfg/yolov3.cfg weights/yolov3.weights batch ./frames_in/ ./frames_out/ >./results.txt
+    > ./darknet detector test yolov3_time_covers/time.data yolov3_time_covers/time.cfg yolov3_time_covers/backup/time_1800.weights batch yolov3_time_covers/frames_in/ yolov3_time_covers/frames_out/ >./results.txt
 
 This may take several minutes to complete.  When this command has completed, the `frames_out` directory will be filled with copies of the frame images with the Time Magazine covers detected and marked.  
 
-Now all that remains is to build another video, `output_video.mp4`, with the images in frames_out directory.  In order to do this, switch back to the `yolov3_time_covers directory`,
+Now all that remains is to build another video, `output_video.mp4`, with the images in frames_out directory.  In order to do this, switch back to the `yolov3_time_covers directory`.
 
     > cd yolov3_time_covers
 
