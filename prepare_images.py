@@ -73,10 +73,14 @@ def createVideoFrameTrainingImages():
     time_cover_images = readTimeCovers()
     in_clip = VideoFileClip("project_video.mp4")
     image_number = 0
+    frame_number = 0
 
     for image in in_clip.subclip(0,30).iter_frames():
         if image is None or image.size == 0:
             print('zero sized file')
+            continue
+        frame_number += 1
+        if frame_number % 5 > 1:
             continue
         image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
         if image_number % 20 != 0:
