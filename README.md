@@ -237,7 +237,7 @@ Now we are ready to run detection on all of our video frames.  Execute the follo
 
     > ./darknet detector test yolov3_time_covers/time.data yolov3_time_covers/time.cfg yolov3_time_covers/backup/time_last.weights batch yolov3_time_covers/frames_in/ yolov3_time_covers/frames_out/ >./results.txt
 
-This may take several minutes to complete.  When this command has completed, the `frames_out` directory will be filled with copies of the video frame images with the Time Magazine covers detected and marked.  
+This may take several minutes to complete.  When this command has completed, the `frames_out` directory will be filled with copies of the video frame images with the Time Magazine covers detected and marked.  If you look at the contents fo `frames_out` you will notice that the files end with `.jpg.png` extension.  This is a minor flaw with the new `detetor.c` file.  The image files are in fact png format and will work just fine as is.  No renaming is necessary.  
 
 Now all that remains is to build another video, `output_video.mp4`, with the images in `frames_out` directory.  In order to do this, switch back to the `yolov3_time_covers` directory.
 
