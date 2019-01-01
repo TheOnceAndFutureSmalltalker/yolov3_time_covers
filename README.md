@@ -101,7 +101,7 @@ In the `yolov3_time_covers` directory you will see some scripts, darknet trainin
 <br />
 
 
-Training background images are acquired from http://cvcl.mit.edu/database.htm.  While still in the `yolov3_time_covers` directory, run the following shell script to download all of the images and copy them to the `images` directory.
+The background images used for training are acquired from http://cvcl.mit.edu/database.htm.  While still in the `yolov3_time_covers` directory, run the following shell script to download all of the images and copy them to the `images` directory.  You may have to give it execution permission first.
    
     >chmod +x get_images.sh
     >./get_images.sh
@@ -153,7 +153,7 @@ You are now ready to train the model.
 
 In order to train the model, you must switch back to the `darknet` directory.
 
-    >cd ..
+    >cd ../
     
 Now enter the following command to start the training process.
 
@@ -218,7 +218,7 @@ Now you will see two new directories, `frames_in` and `frames_out`.  The `frames
 
 Now we will run our trained model on the video frames and put the results in the `frames_out` directory.  In order to do this, temporarily switch back to the `darknet` folder. 
 
-    >cd ..
+    >cd ../
 
 Now execute the command to get a newer version of one of the darknet files `detector.c`.
 
