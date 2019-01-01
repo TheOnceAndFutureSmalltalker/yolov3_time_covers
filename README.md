@@ -253,9 +253,9 @@ Additional Thoughts
 -------
 The scope of the exercise was purposefully kept narrow to minimize feature prep time and training time.  
 
-* There is only one class, timecover.  Normally there are many classes - dog, cat, person, car, etc.  This greatly reduces training time.
+* There is only one class, timecover.  Normally there are many classes - dog, cat, person, car, etc.  More classes require more training time.
 
-* Very few training images are required in order to achieve adequate precision.  Normally hudreds of thousands of images are required.  Processing more images simply requires more training time (not always though).
+* Very few training images are required in order to achieve adequate precision.  Some training image sets are over a hundred thousand.  Processing more images simply requires more training time (not always though).
 
 * A significant portion of the training images were drawn from the target video, making the model rather specific to the task.  Since the model did not have to generalize as much, training time was reduced.
 
@@ -263,7 +263,7 @@ The scope of the exercise was purposefully kept narrow to minimize feature prep 
 
 * Except for size, the Time Cover images were not modified in any realistic and general way.  A more realistic/general approach would include image modifications such as rotation, occlusion/overlap, perspective transformation, and obscuring with fog/mist.  This simplification makes image prep easier.  It also reduces training time as the model can converge more quickly on identifying the magazine covers.
 
-All of these items would create a much more robust and general model; however, they come at the additional cost of increased data prep time and training time.
+Relaxing the conditions above would create a much more robust and general model; however, it would come at the additional cost of increased data prep time and increased training time.
 
 
 
