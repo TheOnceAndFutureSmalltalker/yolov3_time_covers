@@ -200,7 +200,7 @@ Now we will test our model for mean Average Precision, or mAP.  We will run the 
 
 ### Creating Example Video
 
-This project comes with a 30 second video, project_video.mp4, shot from the dashboard of a car as it drives down the highway.  Go ahead and view this video.  Some of the frames from this video were used in the training process.
+This project comes with a 30 second video, project_video.mp4, shot from the dashboard of a car as it drives down the highway.  Go ahead and view this videov ([project_video.mp4 on YouTube](https://youtu.be/_VHY2apFHvU)). Some of the frames from this video were used in the training process above.
 
 The first thing we will do is create a copy of this video, `input_video.mp4`, placing Time Magazine covers in the video as if they are traveling down the road with the rest of the traffic.  In order to do this, switch back to the `yolov3_time_covers` directory,
 
@@ -210,7 +210,7 @@ and execute the following Python script.
 
     >python create_input_video.py
     
-Now view the resulting video, `input_video.mp4`, to verify the changes were made.  This is what we will use as the input to the darknet detector.  But in order to do this, we must first deconstruct the video into its constituent frames.  To do this, execute the following Python script.
+Now view the resulting video, `input_video.mp4`, to verify the changes were made ([input_video.mp4 on YouTube](https://youtu.be/mAJolAgUF9o)).  This is what we will use as the input to the darknet detector.  But in order to do this, we must first deconstruct the video into its constituent frames.  To do this, execute the following Python script.
 
     >python get_video_frames.py
     
@@ -247,7 +247,7 @@ and execute the following Python script:
 
     >python create_output_video.py
 
-This will create the final video, `output_video.mp4`, with the Time Magazine covers detected and labeled as they travel down the road.
+This will create the final video, `output_video.mp4`, with the Time Magazine covers detected and labeled as they travel down the road.  View this video to make sure the detections are accurate ([output_video.mp4 on YouTube](https://youtu.be/pnOhYnFKPMQ)).
 
 Additional Thoughts
 -------
