@@ -1,18 +1,23 @@
+# create the images directory
 if [ -d  "images" ]; then
   rm images/*.*
 else
   mkdir images
 fi
 
-if [ -d  "labels" ]; then
-  rm labels/*.*
-else
-  mkdir labels
-fi
+#if [ -d  "labels" ]; then
+#  rm labels/*.*
+#else
+#  mkdir labels
+#fi
 
+# go ahead and create backup directory here even though it is not used until training
 if [ ! -d "backup" ]; then
   mkdir backup
 fi
+
+# get four sets of background images, copy them to images/ directory,
+# and clean up afterwards
 
 wget http://cvcl.mit.edu/scenedatabase/highway.zip
 unzip highway.zip
@@ -38,4 +43,5 @@ cp inside_city/*.* images/.
 rm -r inside_city
 rm inside_city.zip
 
+# remove any *.db files downloaded in the process
 rm images/*.db
