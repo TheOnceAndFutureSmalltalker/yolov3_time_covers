@@ -212,7 +212,7 @@ class_id = 0, name = timecover,          ap = 100.00 %
 Total Detection Time: 7.000000 Seconds
 ```
 
-In the example above, we found all of the Time Magazine covers, had no false positives, and had an average IoU of 90.15^%.
+In the example above, we found all of the Time Magazine covers, had no false positives, and had an average IoU of 90.15%.
 
 
 ### Creating Example Video
@@ -278,9 +278,9 @@ The scope of the exercise was purposefully kept narrow to minimize feature prep 
 
 * There was not enough variety in the background images.  A wider set of background images would cause the model to converge more slowly.
 
-* Except for size, the Time Cover images were not modified in any realistic and general way.  A more realistic/general approach would include image modifications such as rotation, occlusion/overlap, perspective transformation, and obscuring with fog/mist.  This simplification makes image prep easier.  It also reduces training time as the model can converge more quickly on identifying the magazine covers.
+* Except for size, the Time Cover images were not modified in any realistic and general way.  A more realistic/general approach would include image modifications such as rotation, occlusion/overlap, perspective transformation, and obscuring with fog/mist.  
 
-Relaxing the conditions above would create a much more robust and general model; however, it would come at the additional cost of increased data prep time and increased training time.
+Relaxing the narrow conditions above would create a much more robust and general model; however, it would come at the additional cost of increased data prep time and a greatly increased training time.
 
 
 
