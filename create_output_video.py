@@ -11,7 +11,7 @@ import os
 from moviepy.editor import ImageSequenceClip
 from ytc_utils import *
 
-file_names = ("frames_out/" + fn for fn in os.listdir('frames_out') if fn.endswith('.jpg'))
+file_names = ("frames_out/" + fn for fn in os.listdir('frames_out') if fn.endswith('.png'))
 file_names = sorted(file_names)
 for f in file_names:
     print(f)
