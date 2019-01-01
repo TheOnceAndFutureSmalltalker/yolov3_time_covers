@@ -4,7 +4,7 @@ This is a demonstration of how to create and train a darknet YOLO v3 model to de
 <br />
 <br />
 <p align="center"><img src='examples/vid_frame_0389.png' width="600"> </p>
-<p align="center"><b>Detected Time Magazine Covers <a href="https://youtu.be/pnOhYnFKPMQ">(watch on YouTube)</a></b></p>
+<p align="center"><b>Detected Time Magazine Covers <a href="https://youtu.be/fcZUdGBETrk">(watch on YouTube)</a></b></p>
 <br />
 <br />
 
@@ -264,7 +264,7 @@ and execute the following Python script:
 
     >python create_output_video.py
 
-This will create the final video, `output_video.mp4`, with the Time Magazine covers detected and labeled as they travel down the road.  View this video to make sure the detections are accurate ([output_video.mp4 on YouTube](https://youtu.be/pnOhYnFKPMQ)).
+This will create the final video, `output_video.mp4`, with the Time Magazine covers detected and labeled as they travel down the road.  View this video to make sure the detections are accurate ([output_video.mp4 on YouTube](https://youtu.be/fcZUdGBETrk)).
 
 Additional Thoughts
 -------
