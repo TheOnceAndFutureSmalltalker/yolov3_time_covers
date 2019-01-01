@@ -181,9 +181,9 @@ An iteration is defined in the `time.cfg` file as 64 images.  What you are looki
 
 Each 100 iterations of training creates a new weights file with updated weights.  These are found in the `yolov3_time_covers/backup` directory.  You can stop training any time and resume with the most recent weights file.  Typically, training takes hours, if not days!  Even with CUDA and GPUs!  For more on training darknet models, see https://pjreddie.com/darknet/yolo/.
 
-Once we have completed training the model, we can test it on some sample images.  We will use the most recent weights file saved in the backup subdirectory.  In this example, the file is `time_1800.weights`.  The 1800 indicates that this weights file was created after 1800 iterations. Execute the command below.
+Once we have completed training the model, we can test it on some sample images.  We will use the most recent weights file saved in the backup subdirectory.  Execute the command below.
 
-    >./darknet detector test yolov3_time_covers/time.data yolov3_time_covers/time.cfg yolov3_time_covers/backup/time_1800.weights yolov3_time_covers/images/a223049.jpg
+    >./darknet detector test yolov3_time_covers/time.data yolov3_time_covers/time.cfg yolov3_time_covers/backup/time_last.weights yolov3_time_covers/images/a223049.jpg
     
 This will produce a copy of the test image named that shows the detected objects.  This copy is saved as `predictions.png`.  Look at this image to verify the magazine covers were adequately detected and labeled.  The resulting image for the command above is shown below.
 
@@ -235,7 +235,7 @@ Now rebuild darknet.
 
 Now we are ready to run detection on all of our video frames.  Execute the following darknet command.
 
-    > ./darknet detector test yolov3_time_covers/time.data yolov3_time_covers/time.cfg yolov3_time_covers/backup/time_1800.weights batch yolov3_time_covers/frames_in/ yolov3_time_covers/frames_out/ >./results.txt
+    > ./darknet detector test yolov3_time_covers/time.data yolov3_time_covers/time.cfg yolov3_time_covers/backup/time_last.weights batch yolov3_time_covers/frames_in/ yolov3_time_covers/frames_out/ >./results.txt
 
 This may take several minutes to complete.  When this command has completed, the `frames_out` directory will be filled with copies of the video frame images with the Time Magazine covers detected and marked.  
 
