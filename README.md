@@ -3,7 +3,7 @@ YOLO v3 Time Magazine Covers Detection and Video
 This is a demonstration of how to create and train a darknet YOLO v3 model to detect Time Magazine covers embeded within background images and create a video where Time Magazine covers are tracked as they move through the video.  Complete instructions are given below.
 <br />
 <br />
-<p align="center"><img src='examples/vid_frame_0389.jpg' width="600"> </p>
+<p align="center"><img src='examples/vid_frame_0389.png' width="600"> </p>
 <p align="center"><b>Image containing Time Magazine covers.</b></p>
 <br />
 <br />
