@@ -177,7 +177,7 @@ Each line indicates current level of success for detecting objects in the image.
 
 ```3: 910.298218, 910.967896 avg loss, 0.000000 rate, 9.746541 seconds, 192 images```
 
-An iteration is defined in the `time.cfg` file as 64 images.  What you are looking for is the avg loss number, currently 910.967896 in the example above, to go down. A good rule of thumb is that training can be stopped when the average loss is consistently below 0.06.
+An iteration is defined in the `time.cfg` file as a batch of 64 images.  What you are looking for is the avg loss number, currently 910.967896 in the example above, to go down. A good rule of thumb is that training can be stopped when the average loss is consistently below 0.06.
 
 Each 100 iterations of training creates a new weights file with updated weights.  These are found in the `yolov3_time_covers/backup` directory.  You can stop training any time and resume with the most recent weights file.  Typically, training takes hours, if not days!  Even with CUDA and GPUs!  For more on training darknet models, see https://pjreddie.com/darknet/yolo/.
 
