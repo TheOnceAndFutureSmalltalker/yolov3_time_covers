@@ -185,7 +185,7 @@ Once we have completed training the model, we can test it on some sample images.
 
     >./darknet detector test yolov3_time_covers/time.data yolov3_time_covers/time.cfg yolov3_time_covers/backup/time_last.weights yolov3_time_covers/images/a223049.jpg
     
-This will produce a copy of the test image named that shows the detected objects.  This copy is saved as `predictions.png`.  Look at this image to verify the magazine covers were adequately detected and labeled.  The resulting image for the command above is shown below.
+This will produce a copy of the test image that shows the detected objects.  This copy is saved as `predictions.png`.  Look at this image to verify the magazine covers were adequately detected and labeled.  The resulting image for the command above is shown below.
 
 <br />
 <br />
