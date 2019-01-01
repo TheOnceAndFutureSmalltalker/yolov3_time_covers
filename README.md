@@ -4,7 +4,7 @@ This is a demonstration of how to create and train a darknet YOLO v3 model to de
 <br />
 <br />
 <p align="center"><img src='examples/vid_frame_0389.png' width="600"> </p>
-<p align="center"><b>Image containing Time Magazine covers.</b></p>
+<p align="center"><b>Detected Time Magazine Covers ([watch on YouTube](https://youtu.be/pnOhYnFKPMQ)).</b></p>
 <br />
 <br />
 
