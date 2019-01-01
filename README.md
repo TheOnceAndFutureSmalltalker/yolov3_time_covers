@@ -194,8 +194,25 @@ This will produce a copy of the test image named that shows the detected objects
 <br />
 <br />
 
-Now we will test our model for mean Average Precision, or mAP.  We will run the model against both training and validation data sets.
+Another way to test the model is to calculate mean Average Precision, mAP, on the validation data set.  To do this, execute the following command.
 
+    >./darknet detector map yolov3_time_covers/time.data yolov3_time_covers/time.cfg yolov3_time_covers/backup/time_last.weights 
+
+You should get output such as the following.
+
+```
+calculation mAP (mean average precision)...
+172
+ detections_count = 152, unique_truth_count = 128
+class_id = 0, name = timecover,          ap = 100.00 %
+ for thresh = 0.25, precision = 1.00, recall = 1.00, F1-score = 1.00
+ for thresh = 0.25, TP = 128, FP = 0, FN = 0, average IoU = 90.15 %
+
+ mean average precision (mAP) = 1.000000, or 100.00 %
+Total Detection Time: 7.000000 Seconds
+```
+
+In the example above, we found all of the Time Magazine covers, had no false positives, and had an average IoU of 90.15^%.
 
 
 ### Creating Example Video
