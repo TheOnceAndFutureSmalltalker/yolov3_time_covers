@@ -36,7 +36,7 @@ The instructions are divided into 4 sequential parts:
 3. Training & Testing the Model
 4. Creating Example Video
 
-**Prerequisites:**  You must have a unix/linux system with at least one GPU (otherwise training will take days!), Python 3.5 or higher with OpenCV and MoviePy installed.
+**Prerequisites:**  You must have a unix/linux system with at least one GPU (otherwise training will take days!), Python 3.5 or higher with OpenCV and MoviePy installed.  This demonstration was successfully performed using an AWS EC2 g3.4large instance based on the Machine learning image.  
 
 ### Installing Darknet 
 
