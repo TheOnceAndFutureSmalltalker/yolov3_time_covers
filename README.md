@@ -10,7 +10,8 @@ This is a demonstration of how to create and train a darknet YOLO v3 model to de
 
 File | Description
 ------------ | -------------
-examples | Folder containing sample images
+examples | 
+lder containing sample images
 README.md | This readme file
 create_input_video.py | Creates a copy of project_video.mp4 with Time magazine covers traveling through it
 create_output_video.py | Creates outpu_video.mp4 from frames which have Time magazine covers detected and marked by model.
@@ -36,7 +37,7 @@ The instructions are divided into 4 sequential parts:
 3. Training & Testing the Model
 4. Creating Example Video
 
-**Prerequisites:**  You must have a unix/linux system with at least one GPU (otherwise training will take days!), Python 3.5 or higher with OpenCV and MoviePy installed.  This demonstration was successfully performed using an AWS EC2 g3.4large instance based on the Machine learning image.  
+**Prerequisites:**  You must have a unix/linux system with at least one GPU (otherwise training will take days!), Python 3.5 or higher with OpenCV and MoviePy installed.  This demonstration was successfully performed using an AWS EC2 g3.4large instance based on the AWS Machine Learning image.  
 
 ### Installing Darknet 
 
@@ -254,7 +255,7 @@ Now we are ready to run detection on all of our video frames.  Execute the follo
 
     > ./darknet detector test yolov3_time_covers/time.data yolov3_time_covers/time.cfg yolov3_time_covers/backup/time_last.weights batch yolov3_time_covers/frames_in/ yolov3_time_covers/frames_out/ >./results.txt
 
-This may take several minutes to complete.  When this command has completed, the `frames_out` directory will be filled with copies of the video frame images with the Time Magazine covers detected and marked.  If you look at the contents fo `frames_out` you will notice that the files end with `.jpg.png` extension.  This is a minor flaw with the new `detetor.c` file.  The image files are in fact png format and will work just fine as is.  No renaming is necessary.  
+This may take several minutes to complete.  When this command has completed, the `frames_out` directory will be filled with copies of the video frame images with the Time Magazine covers detected and marked.  If you look at the contents of `frames_out` you will notice that the files end with `.jpg.png` extension.  This is a minor flaw with the new `detetor.c` file.  The image files are in fact png format and will work just fine as is.  No renaming is necessary.  
 
 Now all that remains is to build another video, `output_video.mp4`, with the images in `frames_out` directory.  In order to do this, switch back to the `yolov3_time_covers` directory.
 
